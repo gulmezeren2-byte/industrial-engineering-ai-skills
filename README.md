@@ -1,5 +1,7 @@
 # Industrial Engineering AI Skills
 
+🇹🇷 Türkçesi: [README.tr.md](README.tr.md)
+
 > Your AI assistant is a brilliant analyst with no methodology. Left alone, it will happily compute a MAPE that silently drops a quarter of your data, rank a Pareto by the wrong unit, and report an on-time KPI your customers wouldn't recognize.
 >
 > These skills install the industrial engineer's discipline — the definitions, the pitfalls, and the validation habits — so the analysis your agent produces is one you can defend in a management meeting.
