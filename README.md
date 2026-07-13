@@ -4,14 +4,32 @@
 
 > Your AI assistant is a brilliant analyst with no methodology. Left alone, it will happily compute a MAPE that silently drops a quarter of your data, rank a Pareto by the wrong unit, and report an on-time KPI your customers wouldn't recognize.
 >
-> These skills install the industrial engineer's discipline — the definitions, the pitfalls, and the validation habits — so the analysis your agent produces is one you can defend in a management meeting.
+> This pack installs the industrial engineer's discipline — a fixed method, the definitions, the pitfalls, and the validation habits — so the analysis your agent produces is one you can defend in a management meeting.
 
-Agent skills are plain-markdown instruction folders (an [open standard](https://agentskills.io) supported by Claude Code, Codex, Cursor and 40+ agent tools). Each skill here is a **process primitive**: it doesn't add code, it adds judgment — what to compute, in which order, which traps to check, and how to validate before presenting.
+Not a grab-bag of prompts: **one operations-analysis method, packaged as composable parts.** Skills carry the how, agents carry the roles, rules carry the always-on constraints, templates carry the artifacts. Built on the [Agent Skills open standard](https://agentskills.io) (Claude Code, Codex, Cursor and 40+ tools).
+
+## Components
+
+| Component | What it is | Semantics |
+|-----------|-----------|-----------|
+| [`skills/`](skills/) (7) | Methodology briefs the agent loads on demand | *How to do the work* |
+| [`agents/`](agents/) (4) | Role definitions (Claude Code subagent format; usable as system prompts anywhere) | *Who does the work* |
+| [`rules/`](rules/) (1) | Data-hygiene constraints, active in every analysis | *What is never allowed* |
+| [`templates/`](templates/) (3) | Analysis brief, data contract, decision memo | *What the work produces* |
+
+## The method
+
+Every analysis runs the same sequence — enforced by the entry skill [`using-ops-method`](skills/using-ops-method/SKILL.md):
+
+**brief → data contract → honest metrics → driver decomposition → stress test → decision memo**
+
+The constitution underneath (full text in [`rules/data-hygiene.md`](rules/data-hygiene.md)): report every dropped row · state every denominator and date anchor · never average ratios · benchmark against doing nothing · reconcile one headline number to raw data before presenting.
 
 ## The skills
 
 | Skill | What it disciplines | Fires when you say things like |
 |-------|---------------------|-------------------------------|
+| [`using-ops-method`](skills/using-ops-method/SKILL.md) | **The entry point** — sequence, routing and the constitution | any ops/supply-chain analysis request |
 | [`otif-analysis`](skills/otif-analysis/SKILL.md) | Delivery performance: the 5-rung metric ladder, driver decomposition, tail analysis | "OTIF", "on-time delivery", "why do customers complain at 95%?" |
 | [`forecast-accuracy-review`](skills/forecast-accuracy-review/SKILL.md) | Forecast evaluation: WMAPE + bias + FVA vs naive, rolling-origin backtests | "forecast accuracy", "is our demand planning working?" |
 | [`abc-xyz-segmentation`](skills/abc-xyz-segmentation/SKILL.md) | Portfolio segmentation: value × variability 9-box with a policy per cell | "ABC analysis", "which SKUs deserve attention?" |
@@ -19,28 +37,41 @@ Agent skills are plain-markdown instruction folders (an [open standard](https://
 | [`root-cause-pareto`](skills/root-cause-pareto/SKILL.md) | Pareto discipline: unit choice, category hygiene, exposure normalization, follow-up metric | "downtime pareto", "defect ranking", "80/20" |
 | [`weekly-ops-report`](skills/weekly-ops-report/SKILL.md) | Reporting contract: what changed / where concentrated / what needs a decision | "weekly report", "summarize our KPIs for management" |
 
-## Why these are different
+## The agents
 
-Every skill encodes **the pitfalls, not just the steps** — the measurement traps I keep meeting in real operations: MAPE's silent zero-dropping, tolerance windows that buy free KPI points, cycle-service numbers quoted where contracts say fill rate, "Other" as the tallest Pareto bar. Each one ends with a validation loop (reconcile against raw data before presenting) and a defined output contract.
+| Agent | Role |
+|-------|------|
+| [`delivery-analyst`](agents/delivery-analyst.md) | OTIF and service-level analyses, end to end |
+| [`demand-planner`](agents/demand-planner.md) | Demand profiling and forecast-value verdicts |
+| [`inventory-analyst`](agents/inventory-analyst.md) | Segmentation, safety stock, rationalization |
+| [`ops-reviewer`](agents/ops-reviewer.md) | **The gate**: adversarial review of any analysis against the rules, before it ships |
 
-The methodology behind these skills is demonstrated, with numbers and charts, in the *measurement honesty* series: [otif-analytics](https://github.com/gulmezeren2-byte/otif-analytics) · [forecast-accuracy-lab](https://github.com/gulmezeren2-byte/forecast-accuracy-lab) · [abc-xyz-inventory](https://github.com/gulmezeren2-byte/abc-xyz-inventory) · [auto-report-pipeline](https://github.com/gulmezeren2-byte/auto-report-pipeline).
+## Why this is different
+
+Every part encodes **the pitfalls, not just the steps** — the measurement traps of real operations: MAPE's silent zero-dropping, tolerance windows that buy free KPI points, cycle-service numbers quoted where contracts say fill rate, "Other" as the tallest Pareto bar. Each skill ends with a validation loop and a defined output contract, and the `ops-reviewer` agent exists to break your analysis in private before someone breaks it in a meeting.
+
+The methodology is demonstrated, with numbers and charts, in the *measurement honesty* series: [otif-analytics](https://github.com/gulmezeren2-byte/otif-analytics) · [forecast-accuracy-lab](https://github.com/gulmezeren2-byte/forecast-accuracy-lab) · [abc-xyz-inventory](https://github.com/gulmezeren2-byte/abc-xyz-inventory) · [auto-report-pipeline](https://github.com/gulmezeren2-byte/auto-report-pipeline)
 
 ## Install
 
-**Claude Code** — copy the skill folders into your project or user skills directory:
+**Claude Code** — copy the parts you want:
 
 ```bash
 git clone https://github.com/gulmezeren2-byte/industrial-engineering-ai-skills
-cp -r industrial-engineering-ai-skills/skills/* ~/.claude/skills/        # user-wide
-# or: cp -r industrial-engineering-ai-skills/skills/* .claude/skills/    # this project only
+cd industrial-engineering-ai-skills
+cp -r skills/* ~/.claude/skills/          # user-wide skills (or .claude/skills/ per project)
+cp -r agents/* ~/.claude/agents/          # role subagents (or .claude/agents/ per project)
+cat rules/data-hygiene.md >> CLAUDE.md    # always-on rules, per project
+cp templates/* your-project/docs/         # artifacts
 ```
 
-**Other agents** (Codex, Cursor, Gemini CLI, ...) — same folders, per the [Agent Skills standard](https://agentskills.io); check your tool's skills directory.
+**Other agents** (Codex, Cursor, Gemini CLI, ...) — the `skills/` folders follow the [Agent Skills standard](https://agentskills.io); check your tool's skills directory. Agent files work as plain system prompts.
 
 **Any LLM, no agent** — open a SKILL.md and paste it as context before your question; each one is written to work as a standalone methodology brief.
 
 ## Roadmap — next skills
 
+- [x] Entry skill, roles, rules and templates (the pack structure)
 - [ ] `smed-changeover-analysis` — changeover time reduction, internal/external split discipline
 - [ ] `line-balancing` — takt, precedence, balance-loss accounting
 - [ ] `demand-pattern-classification` — smooth/erratic/intermittent/lumpy routing to the right method
@@ -50,13 +81,9 @@ cp -r industrial-engineering-ai-skills/skills/* ~/.claude/skills/        # user-
 
 Suggestions welcome — open an issue with the messiest analysis you keep repeating.
 
-## 🇹🇷 Türkçe özet
-
-Bu depo, endüstri mühendisliği metodolojisini yapay zeka ajanlarının kullanabileceği becerilere (skill) dönüştürür: OTIF denetimi, tahmin doğruluğu değerlendirmesi, ABC-XYZ segmentasyonu, emniyet stoku kontrolü, Pareto disiplini ve haftalık rapor sözleşmesi. Her beceri yalnızca adımları değil, ölçüm tuzaklarını ve doğrulama alışkanlıklarını da kodlar. Claude Code ile klasörü kopyalayarak, diğer araçlarla Agent Skills standardı üzerinden, ya da herhangi bir LLM'e bağlam olarak yapıştırarak kullanabilirsiniz.
-
 ## About
 
-Curated and written by **[Eren Gülmez](https://www.linkedin.com/in/erengulmez)** — industrial engineer, İstanbul. I design measurement systems and direct modern tooling to ship them; these skills are the judgment layer of that work, packaged for reuse.
+Curated and written by **[Eren Gülmez](https://www.linkedin.com/in/erengulmez)** — industrial engineer, İstanbul. I design measurement systems and direct modern tooling to ship them; this pack is the judgment layer of that work, packaged for reuse.
 
 Part of an open industrial-engineering toolkit → **[awesome-industrial-engineering](https://github.com/gulmezeren2-byte/awesome-industrial-engineering)**
 
