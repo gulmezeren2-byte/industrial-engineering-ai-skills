@@ -1,6 +1,6 @@
 ---
 name: safety-stock-review
-description: Size or audit safety stock with assumption checks - the z*sigma*sqrt(LT) formula plus an empirical stress test of what it actually delivers (cycle service vs fill rate) per variability class. Use when the user mentions safety stock, emniyet stoğu, reorder point, service level, stok seviyesi belirleme. Differentiator - refuses to hand back a number without validating the demand-distribution assumptions behind it.
+description: Size or audit safety stock with assumption checks - the z*sigma*sqrt(LT) formula plus an empirical stress test of what it actually delivers (cycle service vs fill rate) per variability class. Use when the user mentions safety stock, emniyet stoku, emniyet stoğu, reorder point, service level, stok seviyesi belirleme. Differentiator - refuses to hand back a number without validating the demand-distribution assumptions behind it.
 ---
 
 # Safety Stock Review

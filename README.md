@@ -35,9 +35,9 @@ cp -r industrial-engineering-ai-skills/skills/* ~/.claude/skills/        # user-
 
 **Other agents** (Codex, Cursor, Gemini CLI, ...) — same folders, per the [Agent Skills standard](https://agentskills.io); check your tool's skills directory.
 
-**Any LLM, no agent** — open a SKILL.md and paste it as context before your question. They are written to work as standalone methodology briefs.
+**Any LLM, no agent** — open a SKILL.md and paste it as context before your question; each one is written to work as a standalone methodology brief.
 
-## Roadmap — one new skill per week
+## Roadmap — next skills
 
 - [ ] `smed-changeover-analysis` — changeover time reduction, internal/external split discipline
 - [ ] `line-balancing` — takt, precedence, balance-loss accounting
@@ -50,7 +50,7 @@ Suggestions welcome — open an issue with the messiest analysis you keep repeat
 
 ## 🇹🇷 Türkçe özet
 
-Bu depo, endüstri mühendisliği metodolojisini yapay zeka ajanlarının kullanabileceği becerilere (skill) dönüştürür: OTIF denetimi, tahmin doğruluğu değerlendirmesi, ABC-XYZ segmentasyonu, emniyet stoğu kontrolü, Pareto disiplini ve haftalık rapor sözleşmesi. Her beceri yalnızca adımları değil, ölçüm tuzaklarını ve doğrulama alışkanlıklarını da kodlar. Claude Code ile klasörü kopyalayarak, diğer araçlarla Agent Skills standardı üzerinden, ya da herhangi bir LLM'e bağlam olarak yapıştırarak kullanabilirsiniz.
+Bu depo, endüstri mühendisliği metodolojisini yapay zeka ajanlarının kullanabileceği becerilere (skill) dönüştürür: OTIF denetimi, tahmin doğruluğu değerlendirmesi, ABC-XYZ segmentasyonu, emniyet stoku kontrolü, Pareto disiplini ve haftalık rapor sözleşmesi. Her beceri yalnızca adımları değil, ölçüm tuzaklarını ve doğrulama alışkanlıklarını da kodlar. Claude Code ile klasörü kopyalayarak, diğer araçlarla Agent Skills standardı üzerinden, ya da herhangi bir LLM'e bağlam olarak yapıştırarak kullanabilirsiniz.
 
 ## About
 
