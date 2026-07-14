@@ -1,0 +1,31 @@
+{
+  "name": "industrial-engineering-ai-skills",
+  "version": "1.0.0",
+  "description": "An operations-analysis method pack for AI agents: 7 skills (OTIF audit, forecast accuracy, ABC-XYZ, safety stock, Pareto discipline, reporting contracts, method router), 4 role agents, always-on data-hygiene rules and artifact templates. Pitfalls included.",
+  "author": {
+    "name": "Eren Gülmez",
+    "url": "https://github.com/gulmezeren2-byte"
+  },
+  "homepage": "https://github.com/gulmezeren2-byte",
+  "repository": "https://github.com/gulmezeren2-byte/industrial-engineering-ai-skills",
+  "license": "MIT",
+  "keywords": [
+    "industrial-engineering",
+    "supply-chain",
+    "operations",
+    "otif",
+    "forecasting",
+    "inventory",
+    "pareto",
+    "kpi",
+    "skills",
+    "agents"
+  ],
+  "mcpServers": {},
+  "skills": [
+    "./skills/"
+  ],
+  "agents": [
+    "./agents/"
+  ]
+}

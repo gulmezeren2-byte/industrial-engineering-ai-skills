@@ -1,0 +1,40 @@
+{
+  "name": "industrial-engineering-ai-skills",
+  "owner": {
+    "name": "Eren Gülmez"
+  },
+  "metadata": {
+    "description": "Operations-analysis method pack: skills, role agents, data-hygiene rules and artifact templates for industrial engineering and supply-chain work"
+  },
+  "plugins": [
+    {
+      "name": "industrial-engineering-ai-skills",
+      "source": "./",
+      "description": "An operations-analysis method for AI agents: OTIF audits, forecast accuracy reviews, ABC-XYZ segmentation, safety-stock stress tests, Pareto discipline and reporting contracts - with role agents, always-on data-hygiene rules and artifact templates. Pitfalls included.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Eren Gülmez"
+      },
+      "homepage": "https://github.com/gulmezeren2-byte",
+      "repository": "https://github.com/gulmezeren2-byte/industrial-engineering-ai-skills",
+      "license": "MIT",
+      "keywords": [
+        "industrial-engineering",
+        "supply-chain",
+        "operations",
+        "otif",
+        "forecasting",
+        "inventory",
+        "pareto",
+        "kpi"
+      ],
+      "category": "workflow",
+      "tags": [
+        "skills",
+        "agents",
+        "operations",
+        "supply-chain"
+      ]
+    }
+  ]
+}

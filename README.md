@@ -1,5 +1,9 @@
 # Industrial Engineering AI Skills
 
+![Skills](https://img.shields.io/badge/skills-7-blue) ![Agents](https://img.shields.io/badge/agents-4-blue) ![Templates](https://img.shields.io/badge/templates-3-blue) ![Rules](https://img.shields.io/badge/rules-1-blue) ![License](https://img.shields.io/badge/license-MIT-green)
+
+Works with **Claude Code · Codex · Cursor · Gemini CLI** and any [Agent Skills](https://agentskills.io) client.
+
 🇹🇷 Türkçesi: [README.tr.md](README.tr.md)
 
 > Your AI assistant is a brilliant analyst with no methodology. Left alone, it will happily compute a MAPE that silently drops a quarter of your data, rank a Pareto by the wrong unit, and report an on-time KPI your customers wouldn't recognize.
@@ -21,7 +25,10 @@ Not a grab-bag of prompts: **one operations-analysis method, packaged as composa
 
 Every analysis runs the same sequence — enforced by the entry skill [`using-ops-method`](skills/using-ops-method/SKILL.md):
 
-**brief → data contract → honest metrics → driver decomposition → stress test → decision memo**
+```mermaid
+flowchart LR
+    A["1 · Brief"] --> B["2 · Data contract"] --> C["3 · Honest metrics"] --> D["4 · Driver decomposition"] --> E["5 · Stress test"] --> F["6 · Decision memo"]
+```
 
 The constitution underneath (full text in [`rules/data-hygiene.md`](rules/data-hygiene.md)): report every dropped row · state every denominator and date anchor · never average ratios · benchmark against doing nothing · reconcile one headline number to raw data before presenting.
 
@@ -54,7 +61,14 @@ The methodology is demonstrated, with numbers and charts, in the *measurement ho
 
 ## Install
 
-**Claude Code** — copy the parts you want:
+**Claude Code — one command (plugin):**
+
+```
+/plugin marketplace add gulmezeren2-byte/industrial-engineering-ai-skills
+/plugin install industrial-engineering-ai-skills
+```
+
+**Claude Code — manual copy** (pick the parts you want):
 
 ```bash
 git clone https://github.com/gulmezeren2-byte/industrial-engineering-ai-skills
